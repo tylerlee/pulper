@@ -43,7 +43,7 @@ var findMetaInfo = function (content) {
 
   var defaults = {
     title: null,
-    layout: 'basic',
+    layout: 'skeleton',
     pageWidth: '8.5in',
     pageHeight: '11in',
     pageMargin: '.5in'
