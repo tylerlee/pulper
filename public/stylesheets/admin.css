@@ -1,0 +1,126 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  background: #424b8d;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  line-height: 150%;
+  padding: 5%;
+  width: 100%; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #222;
+  margin-top: 0; }
+
+label, textarea {
+  width: 100%; }
+
+textarea {
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 15px;
+  margin: 20px 0;
+  min-height: 200px;
+  padding: 20px; }
+
+.box {
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 40px;
+  width: 100%;
+  background: white;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #777;
+  font-size: 18px;
+  text-align: center; }
+
+.info-box {
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 40px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #dedede;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: rgba(255, 255, 255, 0.8); }
+  .info-box h1, .info-box h2, .info-box h3 {
+    box-shadow: 0px 1px 0px transparent;
+    color: white; }
+
+label {
+  display: block;
+  margin-bottom: 20px; }
+
+.hidden {
+  display: none; }
+
+input, select, textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; }
+
+#drop_zone {
+  background: #5F6CC7;
+  border: 3px solid #424b8d;
+  border-radius: 5;
+  color: white;
+  font-size: 18px;
+  margin: 0 auto 20px auto;
+  height: 80px;
+  line-height: 150%;
+  padding: 11px;
+  text-align: center;
+  width: 300px; }
+  #drop_zone .small {
+    font-size: 14px;
+    opacity: .8; }
+  #drop_zone:hover {
+    cursor: cell; }
+  #drop_zone.loaded {
+    background: #f4f4f4;
+    border: 3px solid #dedede;
+    color: #777;
+    padding-top: 20px; }
+  #drop_zone .file-name {
+    display: block;
+    margin-top: 10px; }
+
+input[type='submit'], .button {
+  background: white;
+  border: 3px solid #f4f4f4;
+  border-radius: 5;
+  color: #ccc;
+  display: block;
+  font-size: 18px;
+  height: 50px;
+  line-height: 40px;
+  margin: 0 auto 20px auto;
+  width: 300px; }
+  input[type='submit'].ready, .button.ready {
+    background: #5F6CC7;
+    border: 3px solid #424b8d;
+    color: white; }
+    input[type='submit'].ready:hover, .button.ready:hover {
+      background: #AF6C8B;
+      border: 3px solid #FF6C4F;
+      color: white; }
+
+a.button {
+  background: #FF6C4F;
+  border: 3px solid #AF6C8B !important;
+  color: white !important;
+  font-weight: 400;
+  line-height: 44px;
+  margin-bottom: 0;
+  text-decoration: none; }
+  a.button:hover {
+    background: #AF6C8B;
+    border: 3px solid #FF6C4F; }
+
+dl dt {
+  font-weight: bold; }
