@@ -112,7 +112,7 @@ input[type='submit'], .button {
 
 a.button {
   background: #FF6C4F;
-  border: 3px solid #AF6C8B !important;
+  border: 3px solid #AF6C8B;
   color: white !important;
   font-weight: 400;
   line-height: 44px;
@@ -124,3 +124,18 @@ a.button {
 
 dl dt {
   font-weight: bold; }
+
+footer {
+  color: white;
+  display: block;
+  margin: 0 auto;
+  max-width: 400px;
+  opacity: .5;
+  padding: 20px;
+  text-align: center; }
+  footer:hover {
+    opacity: 1; }
+  footer a {
+    border-bottom: 1px dotted white;
+    color: white;
+    text-decoration: none; }
