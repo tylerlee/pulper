@@ -1,20 +1,32 @@
 var express = require('express'),
     exphbs  = require('express-handlebars');
  
-var app = express(),
-    bodyParser = require('body-parser'),
-    fs   = require('fs'),
-    htmlparser = require("htmlparser"),
-    marked = require('marked'),
-    phantom = require('phantom');    
+var app = express();
+var bodyParser = require('body-parser');
 
+var phantom = require('phantom');
+var fs   = require('fs');
+
+var marked = require('marked');
+var htmlparser = require("htmlparser");
 var _ = require('underscore');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.set('view engine', 'handlebars');
+ 
+app.get('/', function (req, res) {
+  res.render('home', {
+    layout: 'app'
+  });
+});
 
-// for parsing application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.get('/generated/tmpFile', function (req, res) {
+  res.render('generated/tmpFile', {
+    layout: req.query.layout,
+    title: req.query.title
+  });
+});
 
 
 var findMetaInfo = function (content) {
@@ -26,6 +38,9 @@ var findMetaInfo = function (content) {
   parser.parseComplete(content);
   
   var frontMatter = handler.dom[0].data;
+
+  console.log(frontMatter);
+
   var defaults = {
     title: null,
     layout: 'basic',
@@ -71,17 +86,6 @@ var renderPDF = function (meta, options) {
     });
   });
 }
-
-app.get('/', function (req, res) {
-  res.render('home', { layout: 'app' });
-});
-
-app.get('/generated/tmpFile', function (req, res) {
-  res.render('generated/tmpFile', {
-    layout: req.query.layout,
-    title: req.query.title
-  });
-});
 
 app.post('/convert', function (req, res) {
   var savePath = 'views/generated/tmpFile.handlebars';
