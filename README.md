@@ -51,7 +51,7 @@ Layouts are like a theme for your content. They are built with handlebars and ca
 
 So maybe your company letterhead is a layout; then all you have to do is write a little markdown, drag it to pulper and you'll have a PDF ready to print or email on your company's letterhead. We use this to write technical documentation in markdown (easy for devs) but then quickly pretty-it-up for clients to read (easy on the eyes). 
 
-To create your own layout add a ````.handlebars```` file in the views/layouts/themes folder. Follow Skeleton as a guide, it's easy. 
+To create your own layout add a ````.handlebars```` file in the ````views/layouts/themes```` folder. Follow Skeleton as a guide, it's easy. 
 
 Then just specify that theme in the meta of the next document you drop into Pulper.
 
