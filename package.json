@@ -1,0 +1,25 @@
+{
+  "name": "pulper",
+  "version": "0.0.1",
+  "description": "The goal is to output pretty PDFs from a number of sources that laymen use: markdown, txt and then HTML as well. So far a very opinionated set of features and a UI to make it super-easy for the non-devs among us to participate in the creation of content.",
+  "bugs": { "url" : "http://github.com/tylerlee/pulper/issues" },
+  "license": "MIT",
+  "people": {
+    "name": "Tyler Lee",
+    "email": "tyler@tylerjameslee.com",
+    "url": "http://www.tylerjameslee.com"
+  },
+  "devDependencies": {
+    "cogs": "0.33.9",
+    "phantomjs": "1.9.15"
+  },
+  "dependencies": {
+    "body-parser": "^1.11.0",
+    "express": "^4.11.2",
+    "express-handlebars": "^1.1.0",
+    "htmlparser": "^1.7.7",
+    "marked": "^0.3.3",
+    "phantom": "^0.7.2",
+    "underscore": "^1.7.0"
+  }
+}
