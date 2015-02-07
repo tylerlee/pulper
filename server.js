@@ -96,7 +96,7 @@ app.post('/convert', function (req, res) {
 
   res.render('download', {
     layout: 'app',
-    fileName: meta.title,
+    fileName: meta.title || File,
     fileLayout: meta.layout
   });
 });
