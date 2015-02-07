@@ -39,8 +39,6 @@ var findMetaInfo = function (content) {
   
   var frontMatter = handler.dom[0].data;
 
-  console.log(frontMatter);
-
   var defaults = {
     title: null,
     layout: 'skeleton',
@@ -80,7 +78,6 @@ var renderPDF = function (meta, options) {
           height: meta.pageHeight,
           margin: meta.pageMargin
         });
-        console.log('rendering');
         page.render('public/tmpFile.pdf');
       });
     });
