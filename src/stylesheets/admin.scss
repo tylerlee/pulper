@@ -1,0 +1,155 @@
+*{ box-sizing: border-box; }
+
+$orange: #FF6C4F;
+$blue: #5F6CC7;
+$purple: #876CA9;
+$medium: #AF6C8B;
+$dark-blue: #424b8d;
+
+@mixin box-mix(){
+  margin: 0 auto;
+  max-width: 400px;
+  padding: 40px;
+  width: 100%;
+}
+
+body{
+  background: $dark-blue;
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+  line-height: 150%;
+  padding: 5%;
+  width: 100%;
+}
+
+h1,h2,h3,h4,h5,h6{
+  color: #222;
+  margin-top: 0;
+}
+
+label, textarea{
+  width: 100%;
+}
+
+textarea{
+  border: 1px solid #ccc;
+  color: #333;
+  font-size: 15px;
+  margin: 20px 0;
+  min-height: 200px;
+  padding: 20px;
+}
+
+.box{
+  @include box-mix;
+  background: white;
+  border: 3px solid rgba(0,0,0,0.1);
+  border-bottom: 0;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  color: #777;
+  font-size: 18px;
+  text-align: center;
+}
+
+.info-box{
+  @include box-mix;
+  background: rgba(0,0,0,0.1);
+  border: 3px solid rgba(0,0,0,0.1);
+  border-top: 1px solid #dedede;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: rgba(255,255,255,0.8);
+  h1,h2,h3{
+    box-shadow: 0px 1px 0px rgba(0,0,0,0);
+    color: white;
+  }
+}
+
+label{
+  display: block;
+  margin-bottom: 20px;
+}
+
+.hidden{
+  display: none;
+}
+
+input, select, textarea{
+  -webkit-appearance:none;
+  -moz-appearance:none;
+  appearance: none;
+}
+
+#drop_zone{
+  background: $blue;
+  border: 3px solid $dark-blue;
+  border-radius: 5;
+  color: white;
+  font-size: 18px;
+  margin: 0 auto 20px auto;
+  height: 80px;
+  line-height: 150%;
+  padding: 11px;
+  text-align: center;
+  width: 300px;
+  .small{
+    font-size: 14px;
+    opacity: .8;
+  }
+  &:hover { 
+    cursor: cell;
+  }
+  &.loaded{
+    background: #f4f4f4;
+    border: 3px solid #dedede;
+    color: #777;
+    padding-top: 20px;
+  }
+  .file-name{
+    display: block;
+    margin-top: 10px;
+  }
+}
+
+input[type='submit'], .button{
+  background: white;
+  border: 3px solid #f4f4f4;
+  border-radius: 5;
+  color: #ccc;
+  display: block;
+  font-size: 18px;
+  height: 50px;
+  line-height: 40px;
+  margin: 0 auto 20px auto;
+  width: 300px;
+  &.ready{
+    background: $blue;
+    border: 3px solid $dark-blue;
+    color: white;
+    &:hover{
+      background: #AF6C8B;
+      border: 3px solid #FF6C4F;
+      color: white;
+    }
+  }
+}
+
+a.button{
+  background: #FF6C4F;
+  border: 3px solid #AF6C8B !important;
+  color: white !important;
+  font-weight: 400;
+  line-height: 44px;
+  margin-bottom: 0;
+  text-decoration: none;
+  &:hover{
+    background: #AF6C8B;
+    border: 3px solid #FF6C4F;
+  }
+}
+
+dl{
+  dt{
+    font-weight: bold;
+  }
+}
