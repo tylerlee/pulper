@@ -27,8 +27,7 @@ app.post('/convert', function (req, res) {
   var savePath = 'tmp/tmpFile.handlebars';
   var content = marked(req.body.content);
   var meta = findMetaInfo(content);
-  createTempFile(content, savePath);
-  renderPDF(meta);
+  createTempFile(content, savePath, meta);
 
   res.render('download', {
     layout: 'app',
@@ -84,12 +83,13 @@ var findMetaInfo = function (content) {
   return file;
 }
 
-var createTempFile = function (content, savePath) {
+var createTempFile = function (content, savePath, meta) {
   fs.writeFile(savePath, content, function(err) {
     if(err) {
       console.log(err);
     } else {
       console.log("The file was saved!");
+      renderPDF(meta);
     }
   });
 }

@@ -1,0 +1,38 @@
+<!--
+  layout: skeleton
+-->
+<h1 id="pulper">Pulper</h1>
+<h2 id="this-is-an-h2">this is an h2</h2>
+<h3 id="work-in-progress-">Work. In. Progress.</h3>
+<p>This is not much more than a proof of concept at this point to try and get some work files quickfully and artfully converted. Options, customization, that sort of thing will be down the road if we think it ends up being useful. </p>
+<p>Right now if you want to try here&#39;s the quickstart:</p>
+<pre><code>git clone git@github.com:tylerlee/pulper.git
+cd pulper
+npm install
+npm start
+</code></pre><h3 id="the-mission">The Mission</h3>
+<p>I want people in the office to go to a webpage, take their bit of text, and have it styled for them and a pretty PDF ready to go. Focus on ease of use. As a designer I&#39;m tired of jumping into inDesign to style up a text document for a quick sendoff -- but at the same time I&#39;m tired of seeing content goes out that isn&#39;t on our letterhead, hopefully we can chop off some low hanging fruit with pulper.</p>
+<ol>
+<li>Drop markdown, text or html into the Pulper</li>
+<li>Pulper gives you PDF</li>
+</ol>
+<h3 id="customization">Customization</h3>
+<p>Pulper will convert supported filetypes to a PDF easily without any options, but sometimes we need options. Pass some meta info along with your document to get some customization options (these are stil being fleshed out).</p>
+<p>At the very top of your document include HTML comments. These are the current details that can be passed. All are optional. Defaults shown.</p>
+<pre><code>&lt;!-- 
+  layout: basic
+  title: null
+  pageWidth: 8.5in
+  pageHeight: 11in
+  pageMargin: .5in
+--&gt;
+</code></pre><h3 id="layouts">Layouts</h3>
+<h5 id="skeleton">Skeleton</h5>
+<p>  A simple, clean framework that will work to take your files and make them clean and printable. Based upon the Skeleton framework <a href="http://getskeleton.com/">http://getskeleton.com/</a>.</p>
+<h5 id="none">None</h5>
+<p>  Specify none and then only your content will be rendered. This is useful when you have written HTML and want to convert it directly to PDF. This allows you to do more advanced layouts.</p>
+<h3 id="customizing-layouts">Customizing Layouts</h3>
+<p>Layouts are like a theme for your content. They are built with handlebars and can be customized by cloning this repo. I&#39;d love to create some more generic themes for everyone to use but the real power of Pulper is when it gets in your hands and you create custom themes for your needs.</p>
+<p>So maybe your company letterhead is a layout; then all you have to do is write a little markdown, drag it to pulper and you&#39;ll have a PDF ready to print or email on your company&#39;s letterhead. We use this to write technical documentation in markdown (easy for devs) but then quickly pretty-it-up for clients to read (easy on the eyes). </p>
+<p>To create your own layout add a <code>.handlebars</code> file in the views/layouts/themes folder. Follow Skeleton as a guide, it&#39;s easy. </p>
+<p>Then just specify that theme in the meta of the next document you drop into Pulper.</p>
