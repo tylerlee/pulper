@@ -159,6 +159,9 @@ input[type='submit'], .button{
   }
 }
 
+.loader{
+  fill: white;
+}
 a.button{
   background: #FF6C4F;
   border: 3px solid #AF6C8B;
@@ -170,6 +173,9 @@ a.button{
   &:hover{
     background: #AF6C8B;
     border: 3px solid #FF6C4F;
+  }
+  &.download-button{
+    padding-top: 5px;
   }
 }
 
