@@ -1,33 +1,58 @@
 var express = require('express'),
     exphbs  = require('express-handlebars');
  
-var app = express();
-var bodyParser = require('body-parser');
-
-var phantom = require('phantom');
-var fs   = require('fs');
-
-var marked = require('marked');
-var htmlparser = require("htmlparser");
-var _ = require('underscore');
+var app = express(),
+    bodyParser = require('body-parser'),
+    phantom = require('phantom'),
+    fs   = require('fs'),
+    marked = require('marked'),
+    htmlparser = require("htmlparser"),
+    _ = require('underscore');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.set('view engine', 'handlebars');
- 
+
+// main index, allows you to drop in your file  
 app.get('/', function (req, res) {
   res.render('home', {
     layout: 'app'
   });
 });
 
-app.get('/generated/tmpFile', function (req, res) {
-  res.render('generated/tmpFile', {
-    layout: req.query.layout,
-    title: req.query.title
+// Post to /convert with your file so that we can
+// and let the magic happen
+app.post('/convert', function (req, res) {
+  console.log('converting the file');
+  var savePath = 'tmp/tmpFile.handlebars';
+  var content = marked(req.body.content);
+  var meta = findMetaInfo(content);
+  createTempFile(content, savePath);
+  renderPDF(meta);
+
+  res.render('download', {
+    layout: 'app',
+    fileName: meta.title || 'File',
+    fileLayout: meta.layout
   });
 });
 
+// take the html output by marked and drop it into the 
+// layout that the file specifies. 
+app.get('/generated/tmpFile', function (req, res) {
+  console.log('rendering generated');
+  res.render('../tmp/tmpFile', {
+    layout: req.query.layout,
+    title: 'hi',
+    content: fs.readFile('/tmp/tmpFile.handlebars', function(){})
+  });
+});
+
+// send the file to the user
+app.get('/download/tmpFile', function (req, res) {
+  console.log('send file to user');
+  res.download('tmp/tmpFile.pdf');
+});
 
 var findMetaInfo = function (content) {
   var handler = new htmlparser.DefaultHandler(function (error, dom) {
@@ -72,33 +97,22 @@ var createTempFile = function (content, savePath) {
 var renderPDF = function (meta, options) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
-      page.open('http://localhost:3000/generated/tmpFile?layout=' + meta.layoutPath + '&title=' + meta.title, function (status) {
+      page.open('http://localhost:3000/generated/tmpFile?layout=' + meta.layoutPath, function (status) {
         page.set('paperSize', {
           width: meta.pageWidth,
           height: meta.pageHeight,
           margin: meta.pageMargin
         });
-        page.render('public/tmpFile.pdf');
+        page.render('tmp/tmpFile.pdf');
       });
     });
   });
 }
 
-app.post('/convert', function (req, res) {
-  var savePath = 'views/generated/tmpFile.handlebars';
-  var content = marked(req.body.content);
-  var meta = findMetaInfo(content);
-  createTempFile(content, savePath);
-  renderPDF(meta);
 
-  res.render('download', {
-    layout: 'app',
-    fileName: meta.title || File,
-    fileLayout: meta.layout
-  });
-});
-
-// GET /style.css etc
+// Allow public directory to be used for static files
 app.use(express.static(__dirname + '/public'));
 
-app.listen(process.env.PORT || 3000)
+// Start me up on 3000 locally, or wherever heroku wants
+app.listen(process.env.PORT || 3000);
+
