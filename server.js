@@ -40,7 +40,7 @@ app.post('/convert', function (req, res) {
 // layout that the file specifies. 
 app.get('/generated/tmpFile', function (req, res) {
   console.log('rendering generated');
-  res.render('generated/tmpFile', {
+  res.render('/generated/tmpFile', {
     layout: req.query.layout,
     title: 'hi',
     content: fs.readFile('/tmp/tmpFile.handlebars', function(){})
