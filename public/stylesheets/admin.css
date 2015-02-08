@@ -3,9 +3,10 @@
 
 body {
   background: #424b8d;
+  background-image: url('/images/repeat-bg.png');
   font-family: 'helvetica neue', helvetica, arial, sans-serif;
   line-height: 150%;
-  padding: 5%;
+  padding: 2%;
   width: 100%; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -39,6 +40,7 @@ textarea {
   border-top-right-radius: 5px;
   color: #999;
   font-size: 18px;
+  margin-top: 50px;
   text-align: center; }
 
 .info-box {
@@ -72,13 +74,21 @@ input, select, textarea {
   -moz-appearance: none;
   appearance: none; }
 
-.drop-zone-wrap {
+#drop-zone-wrap {
   background: #FF6C4F;
   border-radius: 5px;
   margin: 0 auto 20px auto;
   padding: 5px; }
-  .drop-zone-wrap:hover {
+  #drop-zone-wrap:hover {
     background: #5F6CC7; }
+  #drop-zone-wrap.loaded {
+    background: #5F6CC7; }
+  #drop-zone-wrap.loaded #drop_zone {
+    background: #5F6CC7;
+    border: 3px dotted rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    color: white;
+    padding-top: 24px; }
 
 #drop_zone {
   background: #FF6C4F;
@@ -101,12 +111,6 @@ input, select, textarea {
     border-radius: 5px;
     color: white;
     cursor: cell; }
-  #drop_zone.loaded {
-    background: #5F6CC7;
-    border: 3px dotted rgba(255, 255, 255, 0.5);
-    border-radius: 5px;
-    color: white;
-    padding-top: 24px; }
   #drop_zone .file-name {
     display: block;
     margin-top: 10px; }
@@ -150,6 +154,15 @@ a.button {
 
 dl dt {
   font-weight: bold; }
+
+.logo {
+  margin-bottom: 15px;
+  max-width: 150px; }
+
+.logo-download {
+  display: block;
+  margin: 30px auto 40px auto;
+  max-width: 200px; }
 
 footer {
   color: white;

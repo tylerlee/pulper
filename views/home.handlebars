@@ -1,9 +1,9 @@
 <div class='box'>
   <form action='convert' method='post'>
-    <h1>Pulpr</h1>
+    <img src='/images/pulpr-purple.png' class='logo'>
     <label for='content'>Turn your text files into PDFs</label>
     <textarea id='content' name='content' class='hidden'></textarea>
-    <div class='drop-zone-wrap'>
+    <div id='drop-zone-wrap'>
       <div id="drop_zone">
         Drop your file here
         <div class='small'>markdown, txt or html</div>
@@ -36,7 +36,7 @@
 
     reader.onloadend = function(evt) {
       if (evt.target.readyState == FileReader.DONE) { // DONE == 2
-        document.getElementById('drop_zone').className = 'loaded';
+        document.getElementById('drop-zone-wrap').className = 'loaded';
         document.getElementById('drop_zone').innerHTML = file.name;
         document.getElementById('content').value = evt.target.result;
         document.getElementById('submit').className = 'ready';
