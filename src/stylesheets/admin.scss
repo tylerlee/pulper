@@ -26,6 +26,12 @@ h1,h2,h3,h4,h5,h6{
   margin-top: 0;
 }
 
+h1{ 
+  color: $dark-blue; 
+  font-size: 45px;
+
+}
+
 label, textarea{
   width: 100%;
 }
@@ -46,7 +52,7 @@ textarea{
   border-bottom: 0;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
-  color: #777;
+  color: #999;
   font-size: 18px;
   text-align: center;
 }
@@ -86,15 +92,15 @@ input, select, textarea{
 }
 
 #drop_zone{
-  background: $blue;
-  border: 3px solid $dark-blue;
+  background: #f4f4f4;
+  border: 2px dashed $dark-blue;
   border-radius: 5;
-  color: white;
+  color: $dark-blue;
   font-size: 18px;
   margin: 0 auto 20px auto;
-  height: 80px;
+  height: 88px;
   line-height: 150%;
-  padding: 11px;
+  padding: 15px 11px;
   text-align: center;
   width: 300px;
   .small{
@@ -102,13 +108,16 @@ input, select, textarea{
     opacity: .8;
   }
   &:hover { 
+    background: $blue;
+    border: 2px dashed $dark-blue;
+    color: white;    
     cursor: cell;
   }
   &.loaded{
     background: #f4f4f4;
     border: 3px solid #dedede;
     color: #777;
-    padding-top: 20px;
+    padding-top: 24px;
   }
   .file-name{
     display: block;
