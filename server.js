@@ -40,7 +40,7 @@ app.post('/convert', function (req, res) {
 // layout that the file specifies. 
 app.get('/generated/tmpFile', function (req, res) {
   console.log('rendering generated');
-  res.render('../tmp/tmpFile', {
+  res.render('generated/tmpFile', {
     layout: req.query.layout,
     title: 'hi',
     content: fs.readFile('/tmp/tmpFile.handlebars', function(){})
@@ -97,7 +97,7 @@ var createTempFile = function (content, savePath, meta) {
 var renderPDF = function (meta, options) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
-      page.open('generated/tmpFile?layout=' + meta.layoutPath, function (status) {
+      page.open('https://pulper.herokuapp.com/generated/tmpFile?layout=' + meta.layoutPath, function (status) {
         page.set('paperSize', {
           width: meta.pageWidth,
           height: meta.pageHeight,
