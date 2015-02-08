@@ -684,3 +684,10 @@ hr {
   content: "";
   display: table;
   clear: both; }
+
+
+/* we need some special css for pdfs */
+
+img{
+  max-width: 100%;
+}
