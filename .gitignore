@@ -29,7 +29,6 @@ node_modules
 
 # Generated Files on the Fly
 /public/tmpFile.pdf
-/tmp/*
 
 # Misc
 .DS_Store
