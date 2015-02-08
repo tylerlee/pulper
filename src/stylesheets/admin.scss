@@ -91,32 +91,43 @@ input, select, textarea{
   appearance: none;
 }
 
-#drop_zone{
-  background: #f4f4f4;
-  border: 2px dashed $dark-blue;
-  border-radius: 5;
-  color: $dark-blue;
-  font-size: 18px;
+.drop-zone-wrap{
+  background: $orange;
+  border-radius: 5px;
   margin: 0 auto 20px auto;
+  padding: 5px;
+  &:hover{
+    background: $blue;
+  }
+}
+#drop_zone{
+  background: $orange;
+  border: 3px dotted rgba(255,255,255,0.5);
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
   height: 88px;
   line-height: 150%;
   padding: 15px 11px;
   text-align: center;
-  width: 300px;
+  width: 100%;
   .small{
     font-size: 14px;
     opacity: .8;
   }
   &:hover { 
     background: $blue;
-    border: 2px dashed $dark-blue;
+    border: 3px dotted rgba(255,255,255,0.5);
+    border-radius: 5px;
     color: white;    
     cursor: cell;
   }
   &.loaded{
-    background: #f4f4f4;
-    border: 3px solid #dedede;
-    color: #777;
+    background: $blue;
+    border: 3px dotted rgba(255,255,255,0.5);
+    border-radius: 5px;
+    color: white; 
     padding-top: 24px;
   }
   .file-name{
@@ -137,8 +148,8 @@ input[type='submit'], .button{
   margin: 0 auto 20px auto;
   width: 300px;
   &.ready{
-    background: $blue;
-    border: 3px solid $dark-blue;
+    background: $orange;
+    border: 3px solid $orange;
     color: white;
     &:hover{
       background: #AF6C8B;

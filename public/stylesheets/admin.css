@@ -72,30 +72,40 @@ input, select, textarea {
   -moz-appearance: none;
   appearance: none; }
 
-#drop_zone {
-  background: #f4f4f4;
-  border: 2px dashed #424b8d;
-  border-radius: 5;
-  color: #424b8d;
-  font-size: 18px;
+.drop-zone-wrap {
+  background: #FF6C4F;
+  border-radius: 5px;
   margin: 0 auto 20px auto;
+  padding: 5px; }
+  .drop-zone-wrap:hover {
+    background: #5F6CC7; }
+
+#drop_zone {
+  background: #FF6C4F;
+  border: 3px dotted rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
   height: 88px;
   line-height: 150%;
   padding: 15px 11px;
   text-align: center;
-  width: 300px; }
+  width: 100%; }
   #drop_zone .small {
     font-size: 14px;
     opacity: .8; }
   #drop_zone:hover {
     background: #5F6CC7;
-    border: 2px dashed #424b8d;
+    border: 3px dotted rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
     color: white;
     cursor: cell; }
   #drop_zone.loaded {
-    background: #f4f4f4;
-    border: 3px solid #dedede;
-    color: #777;
+    background: #5F6CC7;
+    border: 3px dotted rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    color: white;
     padding-top: 24px; }
   #drop_zone .file-name {
     display: block;
@@ -113,8 +123,8 @@ input[type='submit'], .button {
   margin: 0 auto 20px auto;
   width: 300px; }
   input[type='submit'].ready, .button.ready {
-    background: #5F6CC7;
-    border: 3px solid #424b8d;
+    background: #FF6C4F;
+    border: 3px solid #FF6C4F;
     color: white; }
     input[type='submit'].ready:hover, .button.ready:hover {
       background: #AF6C8B;
