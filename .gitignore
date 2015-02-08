@@ -30,3 +30,6 @@ node_modules
 # Generated Files on the Fly
 /views/generated/*
 /public/tmpFile.pdf
+
+# Misc
+.DS_Store
