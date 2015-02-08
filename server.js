@@ -97,7 +97,7 @@ var createTempFile = function (content, savePath, meta) {
 var renderPDF = function (meta, options) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
-      page.open('http://localhost:3000/generated/tmpFile?layout=' + meta.layoutPath, function (status) {
+      page.open('generated/tmpFile?layout=' + meta.layoutPath, function (status) {
         page.set('paperSize', {
           width: meta.pageWidth,
           height: meta.pageHeight,
