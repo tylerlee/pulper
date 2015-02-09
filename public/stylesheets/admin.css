@@ -135,7 +135,7 @@ input[type='submit'], .button {
       border: 3px solid #FF6C4F;
       color: white; }
 
-.loader {
+.loader svg {
   fill: white; }
 
 a.button {
