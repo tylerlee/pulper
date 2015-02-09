@@ -44,7 +44,7 @@ app.get('/generated/tmpFile', function (req, res) {
   console.log('rendering generated');
   res.render('../tmp/tmpFile', {
     layout: req.query.layout,
-    title: 'hi',
+    title: req.query.title,
     content: fs.readFile('/tmp/tmpFile.handlebars', function(){})
   });
 });
@@ -99,8 +99,7 @@ var createTempFile = function (content, savePath, meta, req) {
 var renderPDF = function (meta, req) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
-      console.log(req.protocol + '://' + req.get('host') + '/generated/tmpFile?layout=' + meta.layoutPath);
-      page.open(req.protocol + '://' + req.get('host') + '/generated/tmpFile?layout=' + meta.layoutPath, function (status) {
+      page.open(req.protocol + '://' + req.get('host') + '/generated/tmpFile?layout=' + meta.layoutPath + '&title=' + meta.title, function (status) {
         page.set('paperSize', {
           width: meta.pageWidth,
           height: meta.pageHeight,
