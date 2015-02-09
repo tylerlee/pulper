@@ -27,7 +27,9 @@ app.post('/convert', function (req, res) {
   var savePath = 'tmp/tmpFile.handlebars';
   var content = marked(req.body.content);
   var meta = findMetaInfo(content);
+  console.log('meta found');
   createTempFile(content, savePath, meta);
+  console.log('time file saved');
 
   res.render('download', {
     layout: 'app',
@@ -94,10 +96,10 @@ var createTempFile = function (content, savePath, meta) {
   });
 }
 
-var renderPDF = function (meta, options) {
+var renderPDF = function (meta) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
-      page.open('https://pulper.herokuapp.com/generated/tmpFile?layout=' + meta.layoutPath, function (status) {
+      page.open('http://localhost:3000/generated/tmpFile?layout=' + meta.layoutPath, function (status) {
         page.set('paperSize', {
           width: meta.pageWidth,
           height: meta.pageHeight,
