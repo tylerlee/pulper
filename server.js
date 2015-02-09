@@ -28,7 +28,7 @@ app.post('/convert', function (req, res) {
   var content = marked(req.body.content);
   var meta = findMetaInfo(content);
   console.log('meta found');
-  createTempFile(content, savePath, meta);
+  createTempFile(content, savePath, meta, req);
   console.log('time file saved');
 
   res.render('download', {
@@ -85,21 +85,22 @@ var findMetaInfo = function (content) {
   return file;
 }
 
-var createTempFile = function (content, savePath, meta) {
+var createTempFile = function (content, savePath, meta, req) {
   fs.writeFile(savePath, content, function(err) {
     if(err) {
       console.log(err);
     } else {
       console.log("The file was saved!");
-      renderPDF(meta);
+      renderPDF(meta, req);
     }
   });
 }
 
-var renderPDF = function (meta) {
+var renderPDF = function (meta, req) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
-      page.open('http://localhost:3000/generated/tmpFile?layout=' + meta.layoutPath, function (status) {
+      console.log(req.protocol + '://' + req.get('host') + '/generated/tmpFile?layout=' + meta.layoutPath);
+      page.open(req.protocol + '://' + req.get('host') + '/generated/tmpFile?layout=' + meta.layoutPath, function (status) {
         page.set('paperSize', {
           width: meta.pageWidth,
           height: meta.pageHeight,
