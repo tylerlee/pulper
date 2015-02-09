@@ -1,0 +1,71 @@
+$color-title: rgb(47,47,47);
+
+body{
+  color: rgb(108,108,108);
+  font-family: 'gotham', 'helvetica neue', arial, sans-serif;
+  font-size: 10pt;
+  line-height: 140%;
+}
+h1{
+  color: $color-title;
+  font-size: 22pt;
+  font-weight: 300;
+  line-height: 150%;
+}
+h2{
+  color: $color-title;
+  font-size: 14pt;
+  font-weight: 300;
+  line-height: 150%;
+}
+h3{
+  color: $color-title;
+  font-size: 10pt;
+  font-weight: bold;
+}
+img{
+  max-width: 100%;
+}
+
+ul, ol{
+  li {
+    margin-bottom: 5pt;
+  }
+  ul, ol{
+    padding-top: 5pt;
+  }
+}
+
+.header{
+  border-bottom: 1px dashed #ccc;
+  overflow: hidden;
+  padding: 15pt 0;
+  h1{
+    margin: 0;
+    padding: 0;
+  }
+  .logo{
+    float: right;
+    position: absolute;
+    right: 0;
+    top: 17pt;
+    width: 20%;
+  }
+}
+
+.content{
+  padding: 15pt 0;
+}
+
+.footer{
+  border-top: 1px dashed #ccc;
+  font-size: 8pt;
+  overflow: hidden;
+  margin-top: 10pt;
+  padding: 15pt 0;
+  .logo{
+    float: right;
+    top: 17pt;
+    width: 20%;
+  }
+}
