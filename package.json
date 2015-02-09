@@ -1,8 +1,8 @@
 {
-  "name": "pulper",
+  "name": "pulpr",
   "version": "0.0.1",
   "description": "The goal is to output pretty PDFs from a number of sources that laymen use: markdown, txt and then HTML as well. So far a very opinionated set of features and a UI to make it super-easy for the non-devs among us to participate in the creation of content.",
-  "bugs": { "url" : "http://github.com/tylerlee/pulper/issues" },
+  "bugs": { "url" : "http://github.com/tylerlee/pulpr/issues" },
   "license": "MIT",
   "people": {
     "name": "Tyler Lee",
