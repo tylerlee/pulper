@@ -22,13 +22,10 @@ app.get('/', function (req, res) {
 // Post to /convert with your file so that we can
 // and let the magic happen
 app.post('/convert', function (req, res) {
-  console.log('converting the file');
   var savePath = 'tmp/tmpFile.handlebars';
   var content = marked(req.body.content);
   var meta = findMetaInfo(content);
-  console.log('meta found');
   createTempFile(content, savePath, meta, req);
-  console.log('time file saved');
 
   res.render('download', {
     layout: 'app',
@@ -40,7 +37,6 @@ app.post('/convert', function (req, res) {
 // take the html output by marked and drop it into the 
 // layout that the file specifies. 
 app.get('/generated/tmpFile', function (req, res) {
-  console.log('rendering generated');
   res.render('../tmp/tmpFile', {
     layout: req.query.layout,
     title: req.query.title,
@@ -50,7 +46,6 @@ app.get('/generated/tmpFile', function (req, res) {
 
 // send the file to the user
 app.get('/download/tmpFile', function (req, res) {
-  console.log('send file to user');
   res.download('tmp/tmpFile.pdf');
 });
 
@@ -89,7 +84,6 @@ var createTempFile = function (content, savePath, meta, req) {
     if(err) {
       console.log(err);
     } else {
-      console.log("The file was saved!");
       renderPDF(meta, req);
     }
   });
