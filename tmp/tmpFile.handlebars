@@ -1,145 +1,38 @@
-<!-- 
-  title: R25 Live Setup Guide
+<!--
   layout: skeleton
 -->
-<p><strong>Author(s):</strong> Sonny Garcia (OrgSync), Margo Pardee (CollegeNET)<br><strong>Revision:</strong> 2<br><strong>Updated:</strong> March 31st, 2014  </p>
-<p>Before we go into the details of what&#39;s involved in setting up a 25Live/OrgSync integration, it&#39;s important to know exactly what 25Live is. 25Live is one of a suite of Series25 products released by CollegeNET, Inc. In this suite, 25Live is the web-based application used to schedule and manage classes and events, and R25 is the legacy desktop application used for the same purpose. Both applications leverage a Series25 WebServices API to communicate with the Series25 database. 25Live and R25 provide two different interfaces for interacting with the same Series25 data.</p>
-<p><img src="http://f.cl.ly/items/2A181n1y2N0B25072h1S/layout.png" alt="25 Live Explanation of Data"></p>
-<p>This startup guide is divided into four sections listed below. Please use the information outlined here as a reference when establishing your 25Live/OrgSync integration.</p>
-<ul>
-<li>Section 1: The information that OrgSync needs to integrate with 25Live</li>
-<li>Section 2: The 25Live security settings that allow OrgSync to integrate</li>
-<li>Section 3: FAQ</li>
-<li>Section 4: Final considerations</li>
-</ul>
-<h3 id="section-1-the-information-that-orgsync-needs-to-integrate-with-25live">Section 1: The information that OrgSync needs to integrate with 25Live</h3>
-<p>OrgSync needs your 25Live System Administrator to perform a couple of tasks and provide some information in order to allow our system to communicate with Series25 WebServices. The following list details exactly what the 25Live System Administrator should do.</p>
+<h1 id="pulper">Pulper</h1>
+<h2 id="this-is-an-h2">this is an h2</h2>
+<h3 id="work-in-progress-">Work. In. Progress.</h3>
+<p>This is not much more than a proof of concept at this point to try and get some work files quickfully and artfully converted. Options, customization, that sort of thing will be down the road if we think it ends up being useful. </p>
+<p>Right now if you want to try here&#39;s the quickstart:</p>
+<pre><code>git clone git@github.com:tylerlee/pulper.git
+cd pulper
+npm install
+npm start
+</code></pre><h3 id="the-mission">The Mission</h3>
+<p>I want people in the office to go to a webpage, take their bit of text, and have it styled for them and a pretty PDF ready to go. Focus on ease of use. As a designer I&#39;m tired of jumping into inDesign to style up a text document for a quick sendoff -- but at the same time I&#39;m tired of seeing content goes out that isn&#39;t on our letterhead, hopefully we can chop off some low hanging fruit with pulper.</p>
 <ol>
-<li>Create a single user account in 25Live that will be used by our integration to create all events. Once that user is created, provide the username and password to OrgSync to allow our system to authenticate with 25Live.</li>
-<li>Provide the endpoint URL to your instance of Series25 WebServices.</li>
-<li>Create an event folder in the 25Live Administration Utility and provide OrgSync with the event folder ID.</li>
-<li>Create two custom attributes using the 25Live Administration Utility. These can be labeled any way you like.
-a. One attribute for holding the OrgSync event request ID (Integer)
-b. One attribute for holding event creator information (String)</li>
-<li>Determine the event state that should be used for incoming reservation requests. We need to know which
-state to apply during initial reservation creation, when changes are made, and when they are removed or denied. You can choose from the following:<ul>
-<li>Draft: The space is available until the request is marked as confirmed. This is the most commonly used state.</li>
-<li>Tentative: The space is reserved and made unavailable to other users after the request is submitted. It is marked as pending on the event request in the OrgSync application until it is confirmed in 25Live.</li>
-<li>Confirmed: The space is reserved and made unavailable to other users after the request is submitted. It is also marked as approved on the event request in the OrgSync application.</li>
-</ul>
-</li>
+<li>Drop markdown, text or html into the Pulper</li>
+<li>Pulper gives you PDF</li>
 </ol>
-<p>After completing the above steps, our technical support team will attempt to connect to and synchronize data from your R25 installation.</p>
-<p>Assuming everything proceeds successfully, the next task is organization mapping. Both OrgSync and R25 maintain their own separate lists of organizations (portals). Typically, the same organizations are mirrored in both systems albeit with slight variations in naming or otherwise (e.g. OS Portal: Student Affairs, R25 Org: STUDENT AFFAIRS ASSOC ). Mapping provides a means of translating organizations when both systems communicate and removes the need to import or duplicate any data.</p>
-<p>To set up mappings, do the following in OrgSync:</p>
-<ol>
-<li>Select the Settings option on the community toolbar.</li>
-<li>Choose the Room Reservations tab and select the Organization Mappings sub-tab.</li>
-</ol>
-<p>Determine the event state that should be used for incoming reservation requests. We need to know which state to apply during initial reservation creation, when changes are made, and when they are removed or denied. You can choose from the following:
-Draft: The space is available until the request is marked as confirmed. This is the most commonly used state.
-Tentative: The space is reserved and made unavailable to other users after the request is submitted. It is marked as pending on the event request in the OrgSync application until it is confirmed in 25Live.
-Confirmed: The space is reserved and made unavailable to other users after the request is submitted. It is also marked as approved on the event request in the OrgSync application.</p>
-<p>After completing the above steps, our technical support team will attempt to connect to and synchronize data from your R25 installation.</p>
-<p>Assuming everything proceeds successfully, the next task is organization mapping.  Both OrgSync and R25 maintain their own separate lists of organizations (portals).  Typically, the same organizations are mirrored in both systems albeit with slight variations in naming or otherwise (e.g. OS Portal: Student Affairs, R25 Org: STUDENT AFFAIRS ASSOC ).  Mapping provides a means of translating organizations when both systems communicate and removes the need to import or duplicate any data.</p>
-<p>To set up mappings, do the following in OrgSync:</p>
-<p>Select the Settings option on the community toolbar.
-Choose the Room Reservations tab and select the Organization Mappings sub-tab. 
-On the resulting page, choose an OrgSync portal from the left dropdown, then choose the corresponding organization within 25live. 
-Click Add to establish a connection between the two portals. 
-Repeat this process for all of the portals that can reserve rooms on your campus.reserve rooms on your campus.</p>
-<h2 id="section-2-the-25live-security-settings-that-allow-orgsync-to-integrate">Section 2: The 25Live security settings that allow OrgSync to integrate</h2>
-<p>There are security settings that must be adjusted in 25Live to accommodate for the OrgSync/25Live web service integration. These settings are not one-size-fits-all and will likely need to be customized to better fit your school&#39;s specific business practices. Below is an example of the security settings one campus used to establish successful integration. The settings highlighted in green represent the minimum requirements needed for their campus users to request events. Additional settings were put in place to give the OrgSync security group additional functionality.</p>
-<h3 id="functional-level-security-fls-">Functional Level Security (FLS)</h3>
-<p>First, they created a security group called &quot;OrgSync&quot; and put in place the following FLS settings:</p>
-<ul>
-<li>Contact: Contact Access ::  Can View</li>
-<li>Organization: Organization Access ::  Can view, edit, and create, Organizations tab appears in 25Live</li>
-<li>Organization: Organization Search ::  Can view, run, create and save searches</li>
-<li>Events: Cabinets ::  Can View</li>
-<li>Events: Change State ::  Can view, change and uncancel</li>
-<li>Events: Event Access ::  Can view, edit, and create events</li>
-<li>Events: Event Drafts ::  Can view, edit, create, and copy</li>
-<li>Events: Event Search ::  Can view, run, create and save searches</li>
-<li><strong>Events: Events ::  Can view, edit, create, and copy</strong></li>
-<li>Events: Folders ::  Can view</li>
-<li>Events: Internal Notes ::  Can view, edit, and create</li>
-<li><strong>Events: Resource Information ::  Can view and edit preferences and assign/request</strong></li>
-<li><strong>Events: Location Information ::  Can view and edit preferences and assign/request</strong></li>
-<li>Events: Event Wizard ::  Can use 25Live Event Wizard to create and edit events</li>
-<li>Events: Text ::  Can view, edit, and create</li>
-<li>Locations: Location Access ::  Can view, edit, and create, Locations tab appears in 25Live</li>
-<li>Locations: Location Open/Close/Blackout Hours ::  Can view</li>
-<li>Locations: Location Search ::  Can view, run, create and save searches</li>
-<li><strong>Communication: Task List ::  Can view and act on task items in 25Live or R25</strong></li>
-</ul>
-<h3 id="cabinet-folder-event-object-level-security-ols-">Cabinet/Folder/Event Object Level Security (OLS)</h3>
-<p>This campus uses the Cabinet-Folder-Event structure.</p>
-<ul>
-<li>Cabinets: Object Rights ::  View Only</li>
-<li>Cabinets: New Folder Rights ::  View Only</li>
-<li>Cabinets: New Folder: Create Folders? ::  Yes</li>
-<li>Cabinets: New Folder: Create Events? ::  Yes</li>
-<li>Folders: Object Rights ::  View Only</li>
-<li>Folders: Create Events - Yes</li>
-<li>Folders: New Folder: Create Folders? ::  Yes</li>
-<li>Folders: New Folder: Create Events? No</li>
-<li>Folders: New Event Rights ::  Edit</li>
-<li>Event: Object ::  Edit</li>
-</ul>
-<h3 id="space-or-resource-ols">Space or Resource OLS</h3>
-<ul>
-<li><strong>Object :: View Only</strong></li>
-<li><strong>Events :: Assign/Request</strong></li>
-</ul>
-<h3 id="space-and-resource-assignment-policy-privileges">Space and Resource Assignment Policy Privileges</h3>
-<ul>
-<li><strong>Request</strong></li>
-</ul>
-<h3 id="organization-ols">Organization OLS</h3>
-<ul>
-<li>Object :: View Only</li>
-</ul>
-<h2 id="section-3-faqs">Section 3: FAQs</h2>
-<p><strong>What happens when I add a new location/event type/organization to 25Live?</strong></p>
-<p>OrgSync syncs supporting data from 25Live several times a day. When you add new locations using the 25Live Administration Utility, they become available when the next syncing process completes, not immediately.</p>
-<p><strong>What happens when a 25Live System Administrator confirms or cancels a reservation?</strong></p>
-<p>OrgSync syncs over the change shortly thereafter and sends a notification to the event creator indicating the reservation state change.</p>
-<p><strong>What happens when a 25Live System Administrator changes the locations assigned to a reservation either by adding/ removing one or several of them?</strong></p>
-<p>OrgSync syncs over those changes shortly thereafter and sends the event creator a notification of the specific room changes.</p>
-<p><strong>How do I govern the valid range of dates during which reservations can be created in 25Live?</strong></p>
-<p>The valid date ranges during which reservations can be created must be defined within 25Live. These date ranges are limited by the start and end date on the event folder. It&#39;s important to get these right from the start because users within OrgSync will not be able to view available rooms unless their request falls within the start and end date ranges you define.</p>
-<p><strong>Can I reserve a room for a recurring event?</strong></p>
-<p>Currently, this is not possible within the OrgSync application, but we have established developmental plans to support this feature in the near future.</p>
-<p><strong>What other reservation systems do we support?</strong></p>
-<p>Currently, OrgSync does not integrate with other reservation systems, but we have established developmental plans to build an EMS integration.</p>
-<p><strong>What extra information is made available to the 25Live System Administrator?</strong></p>
-<p>The 25Live System Administrator receives several pieces of information with each event request:</p>
-<ul>
-<li>Event Creator Name</li>
-<li>Event Creator Email</li>
-<li>Event Request ID</li>
-<li>Event Description</li>
-<li>Event Form (if included)</li>
-</ul>
-<p><strong>How do event categories work?</strong></p>
-<p>Both OrgSync and 25Live utilize a unique set of event categories. When a user creates a new event, they will be prompted to select a category from the options made available in that portal. If they choose to request a room, they will be prompted to enter an additional category, populated by the options made available in 25Live. This setup is convenient because it does not require you to map event categories between the two systems.</p>
-<p><strong>What kind of information is made available during the room selection process in OrgSync?</strong></p>
-<p>We collect and display several pieces of information about each of the available locations in 25Live including:</p>
-<ul>
-<li>Capacity</li>
-<li>Features</li>
-<li>Alternate Layouts</li>
-<li>Images</li>
-</ul>
-<h2 id="section-4-final-considerations">Section 4: Final considerations</h2>
-<p>CollegeNET provides all of their clients with two hosting options for their Series25 products. Their SaaS (software as a service) offering is similar to OrgSync&#39;s cloud-based model such that CollegeNET is responsible for maintaining the servers running their software and storing their client&#39;s data. Their self-hosted option, as known as Database at Customer Site (DBCS), requires clients to build, maintain and upgrade their own servers. </p>
-<p>Since OrgSync develops against the latest version of Series25 WebServices API, we recommend that all of our clients leverage CollegeNET&#39;s SaaS offering whenever possible. While it is still possible for us to integrate with a DBCS system, there are multiple benefits associated with choosing the other option, such as: </p>
-<ul>
-<li>Guaranteed system performance when working with large data sets</li>
-<li>Bug patches and upgrades are performed automatically at no cost to the customer</li>
-<li>Seamless support for future enhancements to our room reservation module</li>
-<li>Avoid version compatibility issues</li>
-<li>No server administration overhead</li>
-</ul>
-<p>Please feel free to ask us for more information regarding how to set up a new account with CollegeNET or migrate an existing on-site installation to their hosted solution.</p>
+<h3 id="customization">Customization</h3>
+<p>Pulper will convert supported filetypes to a PDF easily without any options, but sometimes we need options. Pass some meta info along with your document to get some customization options (these are stil being fleshed out).</p>
+<p>At the very top of your document include HTML comments. These are the current details that can be passed. All are optional. Defaults shown.</p>
+<pre><code>&lt;!-- 
+  layout: basic
+  title: null
+  pageWidth: 8.5in
+  pageHeight: 11in
+  pageMargin: .5in
+--&gt;
+</code></pre><h3 id="layouts">Layouts</h3>
+<h5 id="skeleton">Skeleton</h5>
+<p>  A simple, clean framework that will work to take your files and make them clean and printable. Based upon the Skeleton framework <a href="http://getskeleton.com/">http://getskeleton.com/</a>.</p>
+<h5 id="none">None</h5>
+<p>  Specify none and then only your content will be rendered. This is useful when you have written HTML and want to convert it directly to PDF. This allows you to do more advanced layouts.</p>
+<h3 id="customizing-layouts">Customizing Layouts</h3>
+<p>Layouts are like a theme for your content. They are built with handlebars and can be customized by cloning this repo. I&#39;d love to create some more generic themes for everyone to use but the real power of Pulper is when it gets in your hands and you create custom themes for your needs.</p>
+<p>So maybe your company letterhead is a layout; then all you have to do is write a little markdown, drag it to pulper and you&#39;ll have a PDF ready to print or email on your company&#39;s letterhead. We use this to write technical documentation in markdown (easy for devs) but then quickly pretty-it-up for clients to read (easy on the eyes). </p>
+<p>To create your own layout add a <code>.handlebars</code> file in the views/layouts/themes folder. Follow Skeleton as a guide, it&#39;s easy. </p>
+<p>Then just specify that theme in the meta of the next document you drop into Pulper.</p>
