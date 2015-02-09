@@ -1,13 +1,12 @@
-var express = require('express'),
-    exphbs  = require('express-handlebars');
- 
-var app = express(),
-    bodyParser = require('body-parser'),
-    phantom = require('phantom'),
-    fs   = require('fs'),
-    marked = require('marked'),
-    htmlparser = require("htmlparser"),
-    _ = require('underscore');
+var express = require('express');
+var exphbs  = require('express-handlebars');
+var app = express();
+var bodyParser = require('body-parser');
+var phantom = require('phantom');
+var fs   = require('fs');
+var marked = require('marked');
+var htmlparser = require("htmlparser");
+var _ = require('underscore');
 
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
