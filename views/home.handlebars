@@ -1,5 +1,5 @@
 <div class='box'>
-  <form action='convert' method='post'>
+  <form id='doc-upload' action='convert' method='post'>
     <img src='/images/pulpr-purple.png' class='logo'>
     <label for='content'>Turn your text files into PDFs</label>
     <textarea id='content' name='content' class='hidden'></textarea>
@@ -12,7 +12,7 @@
     <div class='arrow-box'>
       <div class='arrow'></div>
     </div>
-    <input id='submit' type='submit' />
+    <input id='submit-button' type='submit' />
   </form>
 </div>
 <div class='info-box'>
@@ -57,11 +57,13 @@
         document.getElementById('drop-zone-wrap').className = 'loaded';
         document.getElementById('drop_zone').innerHTML = file.name;
         document.getElementById('content').value = evt.target.result;
-        document.getElementById('submit').className = 'ready';
+        document.getElementById('submit-button').className = 'ready';
       }
     };
 
     reader.readAsText(file);
+
+    document.getElementById('doc-upload').submit();
   }
 
   function handleDragOver(evt) {
