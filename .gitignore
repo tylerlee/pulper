@@ -33,4 +33,5 @@ node_modules
 # Misc
 .DS_Store
 
-/tmp/tmpFile*
+/tmp/*.pdf
+/tmp/*.handlebars

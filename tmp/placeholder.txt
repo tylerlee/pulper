@@ -1,0 +1,1 @@
+This tmp folder is for heroku. Where the handlebars and pdf files will go when rendered.
