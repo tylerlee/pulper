@@ -37,7 +37,7 @@ app.post('/convert', function (req, res) {
 
 // take the html output by marked and drop it into the 
 // layout that the file specifies. 
-app.get('/generated/tmpFile', function (req, res) {
+app.get('/file', function (req, res) {
   var data = fs.readFile(handlebarsPath(req.query.fileName), function (err, data){
     if (err) { throw err; }
     return data.toString;
@@ -124,7 +124,7 @@ var createTempFile = function (content, savePath, meta, req, fileName) {
 var renderPDF = function (meta, req, fileName) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
-      page.open(req.protocol + '://' + req.get('host') + '/generated/tmpFile?fileName=' + fileName, function (status) {
+      page.open(req.protocol + '://' + req.get('host') + '/file?fileName=' + fileName, function (status) {
         page.set('paperSize', {
           width: meta.pageWidth,
           height: meta.pageHeight,
