@@ -49,7 +49,7 @@
 
 <script>
   var changeDownload = function () {
-    document.getElementById('download').setAttribute('href', 'download/tmpFile');
+    document.getElementById('download').setAttribute('href', 'download/tmpFile?fileName={{fileName}}');
     document.getElementById('download').innerHTML = "Download Now";
     document.getElementById('download').className = 'button ready';
   }

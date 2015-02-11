@@ -22,11 +22,11 @@ app.get('/', function (req, res) {
 // Post to /convert with your content so that we can
 // let the magic happen
 app.post('/convert', function (req, res) {
-  var savePath = 'tmp/tmpFile.handlebars';
   var content = marked(req.body.content);
   var fileName = req.body.fileName;
   var meta = findMetaInfo(content);
-  createTempFile(content, savePath, meta, req);
+  var savePath = 'tmp/' + fileName + '.handlebars';
+  createTempFile(content, savePath, meta, req, fileName);
 
   res.render('download', {
     layout: 'app',
@@ -38,16 +38,16 @@ app.post('/convert', function (req, res) {
 // take the html output by marked and drop it into the 
 // layout that the file specifies. 
 app.get('/generated/tmpFile', function (req, res) {
-  res.render('../tmp/tmpFile', {
+  res.render('../tmp/' + req.query.fileName, {
     layout: req.query.layout,
     title: req.query.title,
-    content: fs.readFile('/tmp/tmpFile.handlebars', function(){})
+    content: fs.readFile('/tmp/'+req.query.fileName+'.handlebars', function(){})
   });
 });
 
 // send the file to the user
 app.get('/download/tmpFile', function (req, res) {
-  res.download('tmp/tmpFile.pdf');
+  res.download('tmp/'+req.query.fileName+'.pdf');
 });
 
 var findMetaInfo = function (content) {
@@ -80,26 +80,26 @@ var findMetaInfo = function (content) {
   return file;
 }
 
-var createTempFile = function (content, savePath, meta, req) {
+var createTempFile = function (content, savePath, meta, req, fileName) {
   fs.writeFile(savePath, content, function(err) {
     if(err) {
       console.log(err);
     } else {
-      renderPDF(meta, req);
+      renderPDF(meta, req, fileName);
     }
   });
 }
 
-var renderPDF = function (meta, req) {
+var renderPDF = function (meta, req, fileName) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
-      page.open(req.protocol + '://' + req.get('host') + '/generated/tmpFile?layout=' + meta.layoutPath + '&title=' + meta.title, function (status) {
+      page.open(req.protocol + '://' + req.get('host') + '/generated/tmpFile?fileName='+fileName+'&layout=' + meta.layoutPath + '&title=' + meta.title, function (status) {
         page.set('paperSize', {
           width: meta.pageWidth,
           height: meta.pageHeight,
           margin: meta.pageMargin
         });
-        page.render('tmp/tmpFile.pdf');
+        page.render('tmp/' + fileName + '.pdf');
       });
     });
   });
