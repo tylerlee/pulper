@@ -19,17 +19,18 @@ app.get('/', function (req, res) {
   });
 });
 
-// Post to /convert with your file so that we can
-// and let the magic happen
+// Post to /convert with your content so that we can
+// let the magic happen
 app.post('/convert', function (req, res) {
   var savePath = 'tmp/tmpFile.handlebars';
   var content = marked(req.body.content);
+  var fileName = req.body.fileName;
   var meta = findMetaInfo(content);
   createTempFile(content, savePath, meta, req);
 
   res.render('download', {
     layout: 'app',
-    fileName: meta.title || 'File',
+    fileName: fileName,
     fileLayout: meta.layout
   });
 });
