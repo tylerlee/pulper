@@ -25,7 +25,7 @@ app.post('/convert', function (req, res) {
   var content = marked(req.body.content);
   var fileName = req.body.fileName;
   var meta = findMetaInfo(content);
-  var savePath = 'tmp/' + fileName + '.handlebars';
+  var savePath = handlebarsPath(fileName);
   createTempFile(content, savePath, meta, req, fileName);
 
   res.render('download', {
@@ -38,18 +38,50 @@ app.post('/convert', function (req, res) {
 // take the html output by marked and drop it into the 
 // layout that the file specifies. 
 app.get('/generated/tmpFile', function (req, res) {
+  var data = fs.readFile(handlebarsPath(req.query.fileName), function (err, data){
+    if (err) { throw err; }
+    return data.toString;
+  });
+  
+  file = findMetaInfo(data);
+
   res.render('../tmp/' + req.query.fileName, {
-    layout: req.query.layout,
-    title: req.query.title,
-    content: fs.readFile('/tmp/'+req.query.fileName+'.handlebars', function(){})
+    layout: layoutPath(file.layout),
+    title: file.title,
+    content: file.content
   });
 });
 
 // send the file to the user
 app.get('/download/tmpFile', function (req, res) {
-  res.download('tmp/'+req.query.fileName+'.pdf');
+  res.download(pdfPath(req.query.fileName));
 });
 
+
+// 
+// Helper Functions 
+//
+
+
+// Pathing that was repeated over and over
+var handlebarsPath = function(name){
+  return tmpPath(name, 'handlebars');
+}
+
+var pdfPath = function(name){
+  return tmpPath(name, 'pdf')
+}
+
+var tmpPath = function(name, ext){
+  return 'tmp/' + name + '.' + ext;
+}
+
+var layoutPath = function(layout){
+  return 'themes/' + layout;
+}
+
+// Break down the content, find the first item and attempt to parse it as 
+// front matter
 var findMetaInfo = function (content) {
   var handler = new htmlparser.DefaultHandler(function (error, dom) {
     if (error){ console.log(error); }
@@ -76,7 +108,6 @@ var findMetaInfo = function (content) {
     file[key] = (match && match[1]) || value;
   });
 
-  file['layoutPath'] = 'themes/' + file.layout;
   return file;
 }
 
@@ -93,13 +124,13 @@ var createTempFile = function (content, savePath, meta, req, fileName) {
 var renderPDF = function (meta, req, fileName) {
   phantom.create(function (ph) {
     ph.createPage(function (page) {
-      page.open(req.protocol + '://' + req.get('host') + '/generated/tmpFile?fileName=' + fileName + '&layout=' + meta.layoutPath + '&title=' + meta.title, function (status) {
+      page.open(req.protocol + '://' + req.get('host') + '/generated/tmpFile?fileName=' + fileName, function (status) {
         page.set('paperSize', {
           width: meta.pageWidth,
           height: meta.pageHeight,
           margin: meta.pageMargin
         });
-        page.render('tmp/' + fileName + '.pdf');
+        page.render(pdfPath(fileName));
       });
     });
   });
