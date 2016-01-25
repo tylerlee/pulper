@@ -178,3 +178,13 @@ footer {
     border-bottom: 1px dotted white;
     color: white;
     text-decoration: none; }
+
+#test-file {
+  color: #333;
+  display: block;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+#test-file.hide{
+  display: none;
+}

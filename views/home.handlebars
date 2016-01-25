@@ -13,6 +13,7 @@
     <div class='arrow-box'>
       <div class='arrow'></div>
     </div>
+    <a id='test-file' href='http://cl.ly/0y0S2w2t2809/download/readme.md' target='blank'>or test with this .md file</a>
     <input id='submit' type='submit' />
   </form>
 </div>
@@ -61,6 +62,7 @@
         document.getElementById('fileName').value = file.name.replace(/\.[^/.]+$/, "");
         document.getElementById('content').value = evt.target.result;
         document.getElementById('submit').className = 'ready';
+        document.getElementById('test-file').className='hide';
       }
     };
 
