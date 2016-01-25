@@ -12,7 +12,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.set('view engine', 'handlebars');
 
-// main index, allows you to drop in your file  
+// main index, allows you to drop in your file
 app.get('/', function (req, res) {
   res.render('home', {
     layout: 'app'
@@ -35,14 +35,14 @@ app.post('/convert', function (req, res) {
   });
 });
 
-// take the html output by marked and drop it into the 
-// layout that the file specifies. 
+// take the html output by marked and drop it into the
+// layout that the file specifies.
 app.get('/file', function (req, res) {
   var data = fs.readFile(handlebarsPath(req.query.fileName), function (err, data){
     if (err) { throw err; }
     return data.toString;
   });
-  
+
   file = findMetaInfo(data);
 
   res.render('../tmp/' + req.query.fileName, {
@@ -58,8 +58,8 @@ app.get('/download/tmpFile', function (req, res) {
 });
 
 
-// 
-// Helper Functions 
+//
+// Helper Functions
 //
 
 
@@ -80,21 +80,21 @@ var layoutPath = function(layout){
   return 'themes/' + layout;
 }
 
-// Break down the content, find the first item and attempt to parse it as 
+// Break down the content, find the first item and attempt to parse it as
 // front matter
 var findMetaInfo = function (content) {
   var handler = new htmlparser.DefaultHandler(function (error, dom) {
     if (error){ console.log(error); }
   });
-  
+
   var parser = new htmlparser.Parser(handler);
   parser.parseComplete(content);
-  
+
   var frontMatter = handler.dom[0].data;
 
   var defaults = {
     title: null,
-    layout: 'skeleton',
+    layout: 'crimson',
     pageWidth: '8.5in',
     pageHeight: '11in',
     pageMargin: '.5in'
@@ -142,4 +142,3 @@ app.use(express.static(__dirname + '/public'));
 
 // Start me up on 3000 locally, or wherever heroku wants
 app.listen(process.env.PORT || 3000);
-
