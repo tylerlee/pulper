@@ -1,7 +1,7 @@
 # Pulpr
 
 ### Work. In. Progress.
-This is not much more than a proof of concept at this point to try and get some work files quickfully and artfully converted. Options, customization, that sort of thing will be down the road if we think it ends up being useful. 
+This is not much more than a proof of concept at this point to try and get some work files quickfully and artfully converted. Options, customization, that sort of thing will be down the road if we think it ends up being useful.
 
 Right now if you want to try here's the quickstart:
 
@@ -26,7 +26,7 @@ pulpr will convert supported filetypes to a PDF easily without any options, but 
 At the very top of your document include HTML comments. These are the current details that can be passed. All are optional. Defaults shown.
 
 ````
-<!-- 
+<!--
   layout: basic
   title: null
   pageWidth: 8.5in
@@ -37,11 +37,11 @@ At the very top of your document include HTML comments. These are the current de
 
 ### Layouts
 
-##### Skeleton 
+##### Skeleton
   A simple, clean framework that will work to take your files and make them clean and printable. Based upon the Skeleton framework http://getskeleton.com/.
 
   ![skeleton-pulpr](http://cl.ly/image/2X3g1S2T3S1K/pulpr.png)
-  
+
 ##### None
   Specify none and then only your content will be rendered. This is useful when you have written HTML and want to convert it directly to PDF. This allows you to do more advanced layouts.
 
@@ -49,9 +49,8 @@ At the very top of your document include HTML comments. These are the current de
 
 Layouts are like a theme for your content. They are built with handlebars and can be customized by cloning this repo. I'd love to create some more generic themes for everyone to use but the real power of pulpr is when it gets in your hands and you create custom themes for your needs.
 
-So maybe your company letterhead is a layout; then all you have to do is write a little markdown, drag it to pulpr and you'll have a PDF ready to print or email on your company's letterhead. We use this to write technical documentation in markdown (easy for devs) but then quickly pretty-it-up for clients to read (easy on the eyes). 
+So maybe your company letterhead is a layout; then all you have to do is write a little markdown, drag it to pulpr and you'll have a PDF ready to print or email on your company's letterhead. We use this to write technical documentation in markdown (easy for devs) but then quickly pretty-it-up for clients to read (easy on the eyes).
 
-To create your own layout add a ````.handlebars```` file in the ````views/layouts/themes```` folder. Follow Skeleton as a guide, it's easy. 
+To create your own layout add a ````.handlebars```` file in the ````views/layouts/themes```` folder. Follow Skeleton as a guide, it's easy.
 
 Then just specify that theme in the meta of the next document you drop into pulpr.
-
